@@ -1,0 +1,3 @@
+[submodule "BaseX_UI"]
+	path = BaseX_UI
+	url = https://github.com/AdrianMedico/BaseX_UI.git
