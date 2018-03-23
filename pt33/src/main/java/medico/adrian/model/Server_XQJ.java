@@ -21,8 +21,34 @@ public class Server_XQJ implements Pt33Manager {
 	
 	@Override
 	public List<String> getPaises() {
+		XQDataSource xqs = settedConnection();
+		XQConnection connection = null;
+		String aux;
+		listaItems.clear();
+		try {
+			connection = xqs.getConnection();
+			XQExpression expr = connection.createExpression();
+			
+			XQResultSequence resultSequence = expr.executeQuery(PeticionesBD.pedirNombresPaises());
+			
+			while (resultSequence.next()) {
+				aux = resultSequence.getItemAsString(null);
+				listaItems.add(aux);
+				
+			}
+			
+		} catch (XQException XQe) {
+			XQe.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+			} catch (XQException e) {
+				e.printStackTrace();
+			}
+		}
 		
-		return null;
+		
+		return listaItems;
 	}
 
 	@Override
