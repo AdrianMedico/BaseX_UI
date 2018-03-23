@@ -48,6 +48,9 @@ import java.awt.Rectangle;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 
+/*
+ * 
+ */
 
 public class Principal extends JFrame {
 

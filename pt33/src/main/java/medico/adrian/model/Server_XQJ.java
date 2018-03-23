@@ -34,6 +34,7 @@ public class Server_XQJ implements Pt33Manager {
 			while (resultSequence.next()) {
 				aux = resultSequence.getItemAsString(null);
 				listaItems.add(aux);
+				
 			}
 			
 		} catch (XQException XQe) {
@@ -88,7 +89,7 @@ public class Server_XQJ implements Pt33Manager {
 				e.printStackTrace();
 			}
 		}
-		p.setGrupsEtnics(listaItems);
+		
 	}
 
 	@Override
