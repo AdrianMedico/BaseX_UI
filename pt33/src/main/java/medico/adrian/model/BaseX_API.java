@@ -1,8 +1,6 @@
 package medico.adrian.model;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,12 +87,6 @@ public class BaseX_API implements Pt33Manager {
 		try {
 			query = session.query(PeticionesBD.getHTML());
 			result = query.execute();
-			File f = new File("htmlPaisosBaseX_API.html");
-			if(f.isFile()) {
-				PrintWriter pw = new PrintWriter(f);
-				pw.write(result);
-			}
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -103,9 +95,8 @@ public class BaseX_API implements Pt33Manager {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-		
-		return result;
+		}	
+		return result+"\nBaseX_API";
 	}
 	
 

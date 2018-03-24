@@ -21,6 +21,7 @@ import org.basex.api.client.ClientSession;
 import org.basex.core.BaseXException;
 
 import medico.adrian.model.BaseX_API;
+import medico.adrian.model.ConstantsCommon;
 import medico.adrian.model.Incrustado;
 import medico.adrian.model.Pais;
 import medico.adrian.model.PeticionesBD;
@@ -50,7 +51,7 @@ import javax.swing.JPanel;
 
 
 public class Principal extends JFrame {
-
+	public static final String CONSTANTE = ConstantsCommon.NOMBREBD;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	public static JComboBox<String> myComboBox;
 	public List<String> nombresPaises;
@@ -68,17 +69,12 @@ public class Principal extends JFrame {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		// public List<String> nombresPaises;
-
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					man = new Incrustado();
-					// Incrustado inc = new Incrustado();
-					Principal principal = new Principal(man.getPaises());
-
-					// man.generarInfoPais(myComboBox.getSelectedItem().toString());
-					
+				
+					Principal principal = new Principal(man.getPaises());	
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -101,13 +97,13 @@ public class Principal extends JFrame {
 	 */
 		myComboBox.setBounds(12, 13, 370, 28);
 		getContentPane().add(myComboBox);
-		myComboBox.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				super.mouseClicked(e);
-				// AQUI DE MOMENTO NADA
-			}
-		});
+//		myComboBox.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				super.mouseClicked(e);
+//				// AQUI DE MOMENTO NADA
+//			}
+//		});
 
 		JButton btnGenera = new JButton("Generar");
 		btnGenera.setMnemonic('G');
@@ -117,10 +113,10 @@ public class Principal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
+				
 				// System.out.println(myComboBox.getSelectedItem().toString());
 				man.generarInfoPais(myComboBox.getSelectedItem().toString());
 				Pais p = man.getPais();
-				System.out.println(p.getNom());
 				textArea.setText("");
 				textArea.append(p.getNom());
 
@@ -151,11 +147,14 @@ public class Principal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
-				String result = man.generarHTML();
+				String result = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
+						
+				result += man.generarHTML();
+				
 				textArea.setText(result);
 
 				//create file
-				File f = new File("htmlPaisos.html");
+				File f = new File("paisos.html");
 				
 				PrintWriter pw = null;
 				try {
@@ -183,9 +182,9 @@ public class Principal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
-//				if (((JRadioButtonMenuItem) e.getSource()).isSelected()) {
-//				}
-				man = new Incrustado();
+				if (incrustado.isSelected()) {
+					man = new Incrustado();
+				}
 			}
 		});
 
@@ -197,7 +196,6 @@ public class Principal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(csBaseX.isSelected()) {
-				System.out.println("FLAAAAAAAAg!!");
 					man = new BaseX_API();
 				}
 			}
@@ -219,11 +217,10 @@ public class Principal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(csXQJ.isSelected()) {
-					man = new BaseX_API();
+					man = new Server_XQJ();
 				}
 			}
 		});
-		man = new Server_XQJ();
 		setVisible(true);
 	}
 

@@ -95,12 +95,9 @@ public class Incrustado implements Pt33Manager {
 	}
 
 	public String generarHTML() {
-		
-
-		String it;
 		context = openContext();
 
-		QueryProcessor processor = new QueryProcessor(PeticionesBD.getHTML(), context);
+//		QueryProcessor processor = new QueryProcessor(PeticionesBD.getHTML(), context);
 		String resposta = null;
 		try {
 			resposta = new XQuery(PeticionesBD.getHTML()).execute(context);
@@ -109,7 +106,7 @@ public class Incrustado implements Pt33Manager {
 			e.printStackTrace();
 		}
 		context.close();
-		return resposta;
+		return resposta + "\nIncrustado";
 	}
 
 	public Pais getPais() {

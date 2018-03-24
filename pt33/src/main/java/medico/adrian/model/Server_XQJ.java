@@ -1,11 +1,7 @@
 package medico.adrian.model;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQDataSource;
 import javax.xml.xquery.XQException;
@@ -97,23 +93,21 @@ public class Server_XQJ implements Pt33Manager {
 		String result = null;
 		XQConnection connexio = null;
 		try{
-			Properties serializationProps = new java.util.Properties();
-			serializationProps.setProperty("method", "html");
+//			Properties serializationProps = new java.util.Properties();
+//			serializationProps.setProperty("method", "html");
 			connexio = xqs.getConnection();
 			
 			XQExpression expre = connexio.createExpression();
 			
 			XQResultSequence resposta = expre.executeQuery(PeticionesBD.getHTML());
 			
-			resposta.writeSequence(new FileOutputStream("htmlPaisosXQJ.html"), serializationProps);
+//			resposta.writeSequence(new FileOutputStream("htmlPaisosXQJ.html"), serializationProps);
 			
 			result = resposta.getSequenceAsString(null);
 			
 			connexio.close();
 			
 		} catch (XQException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -122,7 +116,7 @@ public class Server_XQJ implements Pt33Manager {
 				e.printStackTrace();
 			}
 		}
-		return result;
+		return result + "\nXQJ";
 		
 	}
 
@@ -140,6 +134,7 @@ public class Server_XQJ implements Pt33Manager {
 			xqs.setProperty("port", "1984");
 			xqs.setProperty("user", "admin");
 			xqs.setProperty("password", "admin");
+			xqs.setProperty("databaseName", ConstantsCommon.NOMBREBD);
 			
 		} catch (XQException e) {
 			e.printStackTrace();

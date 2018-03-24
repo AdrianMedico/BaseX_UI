@@ -39,14 +39,14 @@ public class PeticionesBD {
 		String consulta = "\r\n" + 
 				"<html>\r\n" + 
 				"  <head>\r\n" + 
-				"  <title>Información de paises</title>\r\n" + 
+				"  <title>Informacion de paises</title>\r\n" + 
 				"  </head>\r\n" + 
 				"  <body>\r\n" + 
 				"    <table border=\"1\">\r\n" + 
 				"      <tr>\r\n" + 
 				"      <th>Nombre</th>\r\n" + 
 				"      <th>PIB</th>\r\n" + 
-				"      <th>Población</th>\r\n" + 
+				"      <th>Poblacion</th>\r\n" + 
 				"      <th>Num ciudades</th>\r\n" + 
 				"      </tr>\r\n" + 
 				"      {\r\n" + 
